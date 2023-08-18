@@ -37,6 +37,7 @@ public class Combate {
 		 
 		 Champion B = new Champion(nome, vidaInicial, ataque, armadura);
 		 
+		 System.out.println();
 		 
 		 System.out.print("Quantos turnos você deseja executar? ");
 		 int N = sc.nextInt();
@@ -44,16 +45,32 @@ public class Combate {
 		  Champion champion =  new Champion();
 		 int a = 1;
 
+		 
 		 		 
 		 while(a <= N) {
-			
+			 System.out.println();
 			System.out.println("Resultado do turno " + a + ":");
-			champion.takeDamage(B);	
 			champion.takeDamage(A);	
+			champion.takeDamage(B);	
+			if(A.getLife() < 0) {
+				System.out.println(A.getName()+": "+ "0 de vida (Morreu)");
+			}
+			else {
+				System.out.println(champion.status(A));
+			}
 			
-			System.out.println(champion.status(A));
-			System.out.println(champion.status(B));			
-			a++;
+			if(B.getLife() < 0) {
+				System.out.println(B.getName()+": "+ "0 de vida (Morreu)");
+			}
+			else {
+				System.out.println(champion.status(B));	
+			}			
+			if((A.getLife() <= 0) ||( B.getLife() <= 0)) {		
+			a = N +1;
+			}
+			else {
+				a++;
+			}
 			}		
 		
 		sc.close();

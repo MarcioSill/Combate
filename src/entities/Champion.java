@@ -15,7 +15,6 @@ public class Champion {
 		this.life = life;
 		this.attack = attack;
 		this.armor = armor;
-	    takeDamage(this);
 	}
 	
 
@@ -47,22 +46,39 @@ public class Champion {
 		return attack;
 	}
 	
-	public void takeDamage(Champion other) {	
-		
+	Champion A;
+	public void takeDamage(Champion other) {
+	
+		if(A == null) {
+			A = other;
+		}
+	
+	if(A != other) {
 		if((other.getAttack() + other.getArmor()) >= other.getLife()) {
 			other.setLife(other.getLife() - 1);
 		  }
 		
 		else {
 
-			  other.setLife( (other.getLife() - this.attack ) + other.getArmor());
+			  other.setLife( (other.getLife() + other.getArmor())- A.getAttack());
 			 }	
-			
-		}
+		
+		if((A.getAttack() + A.getArmor()) >= A.getLife()) {
+			A.setLife(A.getLife() - 1);
+		  }
+		
+		else {
+
+			  A.setLife( (A.getLife() + A.getArmor())- other.getAttack());
+			 }
+	 }
+
+	}
 	
 		
-	public String status(Champion x) {	
-		return x.name + ": " + x.life + "de vida";
+	public String status(Champion S) {
+	
+		return S.name + ": " + S.life + "de vida";
 	}
 	
 	
